@@ -69,7 +69,7 @@ stage('Deploiement en dev'){
                 ls
                 cat $KUBECONFIG > .kube/config
                 cp fastapi/values.yaml values.yml
-                cho "🔍 Vérification avant sed :"
+                echo "🔍 Vérification avant sed :"
                 cat values.yml | grep tag || echo "⚠️ tag: non trouvé dans values.yml"
 
                 if ! grep -q "^tag:" values.yml; then
