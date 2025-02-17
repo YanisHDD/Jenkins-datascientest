@@ -69,18 +69,8 @@ stage('Deploiement en dev'){
                 ls
                 cat $KUBECONFIG > .kube/config
                 cp fastapi/values.yaml values.yml
-                echo "🔍 Vérification avant sed :"
-                cat values.yml | grep tag || echo "⚠️ tag: non trouvé dans values.yml"
-
-                if ! grep -q "^tag:" values.yml; then 
-                    echo "tag: ${DOCKER_TAG}" >> values.yml
-                    echo "🆕 tag ajouté dans values.yml"
-                fi
-
-                sed -i "s+tag:.*+tag: ${DOCKER_TAG}+g" values.yml
-
-                echo "✅ Vérification après sed :"
-                cat values.yml | grep tag
+                cat values.yml
+                sed -i "s+tag.*+tag: ${DOCKER_TAG}+g" values.yml
                 helm upgrade --install app fastapi --values=values.yml --namespace dev
                 '''
                 }
