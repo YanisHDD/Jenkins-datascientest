@@ -72,7 +72,7 @@ stage('Deploiement en dev'){
                 echo "🔍 Vérification avant sed :"
                 cat values.yml | grep tag || echo "⚠️ tag: non trouvé dans values.yml"
 
-                if ! grep -q "^tag:" values.yml; then
+                if ! grep -q "^tag:" values.yml; then 
                     echo "tag: ${DOCKER_TAG}" >> values.yml
                     echo "🆕 tag ajouté dans values.yml"
                 fi
