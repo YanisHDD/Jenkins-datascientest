@@ -73,8 +73,8 @@ stage('Deploiement en dev'){
                 cat values.yml | grep tag || echo "⚠️ tag: non trouvé dans values.yml"
 
                 if ! grep -q "^tag:" values.yml; then
-                echo "tag: ${DOCKER_TAG}" >> values.yml
-                echo "🆕 tag ajouté dans values.yml"
+                    echo "tag: ${DOCKER_TAG}" >> values.yml
+                    echo "🆕 tag ajouté dans values.yml"
                 fi
 
                 sed -i "s+tag:.*+tag: ${DOCKER_TAG}+g" values.yml
